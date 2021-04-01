@@ -40,10 +40,15 @@ function Input({
       },
     });
   }, [fieldName, registerField]);
+
+  useEffect(() => {
+    inputRef.current.setNativeProps({style: {fontFamily: 'Roboto-Medium'}});
+  }, []);
+
   return (
     <TextInput
       ref={inputRef}
-      style={borderColor === 'green' ? styles.inputGreen : styles.inputWhite}
+      style={borderColor === 'blue' ? styles.inputBlue : styles.inputWhite}
       placeholder={placeholder}
       placeholderTextColor={placeholderTextColor}
       secureTextEntry={secureTextEntry}

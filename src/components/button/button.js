@@ -4,10 +4,15 @@ import styles from './buttonStyle';
 
 //Props: title e onPres.
 
-const Btn = ({title, onPress}) => {
+const Btn = ({title, onPress, type, disabled}) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.loginBtnWrapper}>
-      <Text style={styles.loginText}>{title}</Text>
+    <TouchableOpacity
+      disabled={disabled}
+      onPress={onPress}
+      style={type === 'blue' ? styles.btnBlue : styles.loginBtnWrapper}>
+      <Text style={type === 'blue' ? styles.whiteText : styles.loginText}>
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };

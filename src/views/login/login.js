@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import {
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
@@ -13,30 +13,32 @@ import {
 import styles from './loginStyle';
 import Btn from '../../components/button/button';
 import Input from '../../components/inputs/inputs';
-//import validateEmail from '../../api/validationApi/validateEmail';
+import validateEmail from '../../api/validationApi/validateEmail';
+import {useAuth} from '../../context/authContext';
 
 import {Form} from '@unform/mobile';
 
-const Login = () => {
+const Login = ({navigation}) => {
   const formRef = useRef(null);
+  const {LoginAuth, currentUser} = useAuth();
 
   const [errorMessage, setErrorMessage] = useState('');
 
   // Email check function
   const checkEmail = data => {
-    // let valid = validateEmail(data.email);
-    // if (valid[0]) {
-    //   setErrorMessage('');
-    // } else {
-    //   setErrorMessage(valid[1]);
-    // }
+    console.log(data);
+    let valid = validateEmail(data.email);
+    if (valid[0]) {
+      setErrorMessage('');
+      LoginAuth(data.email, data.password);
+    } else {
+      setErrorMessage(valid[1]);
+    }
   };
 
   // Form function
   const handleSubmit = async data => {
-    // checkEmail(data);
-    // const email = data.email;
-    // const password = data.password;
+    checkEmail(data);
   };
 
   return (
@@ -57,12 +59,12 @@ const Login = () => {
               <Input
                 name="email"
                 placeholder="Digite seu e-mail"
-                placeholderTextColor={'#6E6E6E'}
+                placeholderTextColor={'#00171F'}
               />
               <Input
                 name="password"
                 placeholder="Digite sua senha"
-                placeholderTextColor={'#6E6E6E'}
+                placeholderTextColor={'#00171F'}
                 secureTextEntry={true}
               />
               <View style={styles.forgotPasswordWrapper}>
@@ -83,7 +85,10 @@ const Login = () => {
             </Form>
             <View style={styles.singUpWrapper}>
               <Text style={styles.createAccountLabel}>Não tem uma conta?</Text>
-              <TouchableOpacity onPress={() => {}}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('SingUp');
+                }}>
                 <Text style={styles.singUpText}>Cadastrar</Text>
               </TouchableOpacity>
             </View>

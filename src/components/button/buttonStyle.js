@@ -12,7 +12,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   loginText: {
-    color: '#53C8B0',
+    color: '#00171F',
+    fontSize: 16,
+    fontFamily: 'Roboto-Bold',
+  },
+
+  btnBlue: {
+    backgroundColor: '#00171F',
+    height: screenWidth * 0.12,
+    width: screenWidth * 0.8,
+    borderRadius: 4,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  whiteText: {
+    color: '#FFFFFF',
     fontSize: 16,
     fontFamily: 'Roboto-Bold',
   },

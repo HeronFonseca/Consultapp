@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   logLabel: {
     fontSize: 24,
     fontFamily: 'Roboto-Bold',
-    color: '#FFF',
+    color: '#00171F',
     textAlign: 'center',
     padding: 24,
   },
@@ -35,12 +35,12 @@ const styles = StyleSheet.create({
   forgotPasswordLabel: {
     fontSize: 15,
     fontFamily: 'Roboto-Medium',
-    color: '#FFF',
+    color: '#00171F',
   },
   createAccountLabel: {
     fontSize: 16,
     fontFamily: 'Roboto-Medium',
-    color: '#6E6E6E',
+    color: '#FFFFFF',
   },
 
   singUpWrapper: {
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   singUpText: {
     fontSize: 16,
     fontFamily: 'Roboto-Medium',
-    color: '#FFF',
+    color: '#00171F',
     marginLeft: 5,
   },
   errorMessageLabel: {

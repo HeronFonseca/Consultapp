@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "576089193614",
+    "project_id": "consultapp-ec5f6",
+    "storage_bucket": "consultapp-ec5f6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576089193614:android:67ad7633e31a2a3f661ddf",
+        "android_client_info": {
+          "package_name": "com.consultapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576089193614-dsro7bhef4qu0sj3hq2sr5pt26i6vf2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBK3_qX3I8Vmj6M-Pb4sEe75fm380HFAFY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576089193614-dsro7bhef4qu0sj3hq2sr5pt26i6vf2p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
