@@ -3,6 +3,9 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import Schedule from '../../views/schedule/schedule';
 import AppointmentData from '../../views/appointmentData/appointmentData';
+import CallView from '../../Call/CallView/callView';
+import JoinView from '../../Call/JoinView/joinView';
+import RoomView from '../../Call/RoomView/roomView';
 
 const ScheduleRoutes = () => {
   const ScheduleStack = createStackNavigator();
@@ -22,6 +25,21 @@ const ScheduleRoutes = () => {
         name="AppointmentData"
         component={AppointmentData}
         options={{title: 'Consulta Marcada'}}
+      />
+      <ScheduleStack.Screen
+        name="CallView"
+        component={CallView}
+        options={{headerShown: false}}
+      />
+      <ScheduleStack.Screen
+        name="JoinView"
+        component={JoinView}
+        options={{headerShown: false}}
+      />
+      <ScheduleStack.Screen
+        name="RoomView"
+        component={RoomView}
+        options={{title: 'Chamada de Vídeo'}}
       />
     </ScheduleStack.Navigator>
   );

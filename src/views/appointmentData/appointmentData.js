@@ -70,7 +70,13 @@ const AppointmentData = ({navigation, route}) => {
           <Btn title={'Entrar na consulta'} onPress={toggleModal} />
           <Modal isVisible={isModalVisible}>
             <View style={styles.modalWrapper}>
-              <Btn title={'Ingressar'} onPress={toggleModal} />
+              <Btn
+                title={'Ingressar'}
+                onPress={() => {
+                  toggleModal();
+                  navigation.navigate('RoomView');
+                }}
+              />
             </View>
           </Modal>
         </View>
