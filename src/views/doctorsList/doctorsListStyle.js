@@ -11,8 +11,7 @@ const styles = StyleSheet.create({
   },
   item: {
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'space-between',
     backgroundColor: '#BEEAE1',
     borderRadius: 5,
     shadowRadius: 3.84,
@@ -27,9 +26,33 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 8,
   },
-  specialty: {
+  doctorName: {
     fontSize: 28,
     fontFamily: 'Roboto-Bold',
+    color: '#00171F',
+  },
+  informationWraper: {
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  dateWrapper: {
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  specialty: {
+    fontSize: 18,
+    fontFamily: 'Roboto-Medium',
+    color: '#00171F',
+  },
+  consultationHour: {
+    backgroundColor: 'red',
+    fontSize: 15,
+    fontFamily: 'Roboto-Bold',
+    color: '#00171F',
+  },
+  weekDay: {
+    fontSize: 15,
+    fontFamily: 'Roboto-Medium',
     color: '#00171F',
   },
 });

@@ -1,13 +1,13 @@
 import React from 'react';
 
-import HomeRoutes from '../homeRoutes';
+import AppRoutes from '../appRoutes';
 import LoginRoutes from '../loginRoutes';
 import {useAuth} from '../../context/authContext';
 
 const HandleRoutes = () => {
   const {currentUser} = useAuth();
 
-  return currentUser ? <HomeRoutes /> : <LoginRoutes />;
+  return currentUser ? <AppRoutes /> : <LoginRoutes />;
 };
 
 export default HandleRoutes;

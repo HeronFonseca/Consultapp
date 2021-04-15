@@ -1,44 +1,36 @@
 import React from 'react';
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-
-import ScheduleRoutes from '../scheduleRoutes/scheduleRoutes';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import Home from '../../views/home/home';
-import Files from '../../views/files/files';
-import Forms from '../../views/forms/forms';
-import Account from '../../views/account/account';
-
-const Tab = createMaterialBottomTabNavigator();
+import DoctorsList from '../../views/doctorsList/doctorsList';
+import DoctorDescription from '../../views/doctorDescription/doctorDescription';
 
 const HomeRoutes = () => {
+  const ScheduleStack = createStackNavigator();
+
   return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      activeColor="#00171F"
-      inactiveColor="#FFFFFF"
-      barStyle={{backgroundColor: '#53C8B0'}}>
-      <Tab.Screen name="Home" component={Home} options={{tabBarIcon: 'home'}} />
-      <Tab.Screen
-        name="ScheduleRoutes"
-        component={ScheduleRoutes}
-        options={{tabBarIcon: 'calendar-month'}}
+    <ScheduleStack.Navigator
+      screenOptions={{
+        headerStyle: {backgroundColor: '#53C8B0'},
+        headerTintColor: '#00171F',
+      }}>
+      <ScheduleStack.Screen
+        name="Home"
+        component={Home}
+        options={{title: 'Escolha a especialidade desejada'}}
       />
-      <Tab.Screen
-        name="Files"
-        component={Files}
-        options={{tabBarIcon: 'folder-open'}}
+      <ScheduleStack.Screen
+        name="DoctorsList"
+        component={DoctorsList}
+        options={{title: 'Escolha o seu Médico'}}
       />
-      <Tab.Screen
-        name="Forms"
-        component={Forms}
-        options={{tabBarIcon: 'file-pdf'}}
+      <ScheduleStack.Screen
+        name="DoctorDescription"
+        component={DoctorDescription}
+        options={{title: 'Informações do Médico'}}
       />
-      <Tab.Screen
-        name="Account"
-        component={Account}
-        options={{tabBarIcon: 'account'}}
-      />
-    </Tab.Navigator>
+    </ScheduleStack.Navigator>
   );
 };
+
 export default HomeRoutes;
