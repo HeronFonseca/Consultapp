@@ -19,14 +19,14 @@ Após ter instalado o **GIT** e o **Yarn** faça o clone do projeto.
 para clonar o projeto crie uma pasta chamada **Projetos** em seu computador e execute os seguintes comandos
 
 ```
-git clone  AppConsultas
+git clone https://github.com/HeronFonseca/Consultapp.git Consultapp
 
-cd AppConsultas
+cd Consultapp
 
 yarn
 ```
 
-- o primeiro comando irá clonar o repositório em uma nova pasta chamada **AppConsultas** dentro da pasta **Projetos** que você criou.
+- o primeiro comando irá clonar o repositório em uma nova pasta chamada **Consultapp** dentro da pasta **Projetos** que você criou.
 
 - o segundo comando vai acessar a pasta pelo terminal.
 
