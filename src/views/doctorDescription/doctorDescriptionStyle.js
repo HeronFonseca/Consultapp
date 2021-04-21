@@ -49,14 +49,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#00171F',
   },
-  dateWrapper: {
-    flexDirection: 'row',
+  hourWrapper: {
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-around',
   },
   consultationHour: {
     fontFamily: 'Roboto-Medium',
-    fontSize: 15,
+    fontSize: 20,
     color: '#00171F',
   },
   hours: {
@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
   },
   btnWrapper: {
-    height: screenHeight * 0.2,
     alignItems: 'center',
     justifyContent: 'space-around',
   },
@@ -76,6 +75,25 @@ const styles = StyleSheet.create({
   crm: {
     fontFamily: 'Roboto-Medium',
     fontSize: 15,
+  },
+  modalWrapper: {
+    backgroundColor: '#E9F8F5',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  confirmText: {
+    fontFamily: 'Roboto-Medium',
+    fontSize: 25,
+    color: '#00171F',
+  },
+  scheduledTime: {
+    fontFamily: 'Roboto-Medium',
+    fontSize: 20,
+    color: '#00171F',
+    margin: 25,
+  },
+  confirmBtnWrapper: {
+    flexDirection: 'row',
   },
 });
 

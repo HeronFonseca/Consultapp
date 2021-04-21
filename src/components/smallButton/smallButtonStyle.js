@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     alignItems: 'center',
     justifyContent: 'center',
+    margin: 5,
   },
   smallBtnText: {
     color: '#FFFFFF',

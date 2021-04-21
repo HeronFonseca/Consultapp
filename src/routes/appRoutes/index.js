@@ -3,10 +3,10 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 
 import ScheduleRoutes from '../scheduleRoutes/scheduleRoutes';
 import HomeRoutes from '../homeRoutes';
+import Profile from '../../views/profile/profile';
 
 import Files from '../../views/files/files';
 import Forms from '../../views/forms/forms';
-import Account from '../../views/account/account';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -39,7 +39,7 @@ const AppRoutes = () => {
       />
       <Tab.Screen
         name="Perfil"
-        component={Account}
+        component={Profile}
         options={{tabBarIcon: 'account'}}
       />
     </Tab.Navigator>
