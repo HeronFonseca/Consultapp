@@ -5,7 +5,9 @@ import Btn from '../../components/button/button';
 import {useAuth} from '../../context/authContext';
 
 const Profile = () => {
-  const {LogOut} = useAuth();
+  const {LogOut, currentUser} = useAuth();
+
+  console.log('CURENTUSER', currentUser);
   return (
     <>
       <View style={styles.containerBox}>
@@ -16,11 +18,11 @@ const Profile = () => {
 
         <TouchableOpacity style={styles.box} onPress={() => {}}>
           <Text style={styles.subtitle}>Nome Completo</Text>
-          <Text style={styles.title}>Nome do user</Text>
+          <Text style={styles.title}>{currentUser.displayName}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.box}>
           <Text style={styles.subtitle}>Email</Text>
-          <Text style={styles.title}>Email do User</Text>
+          <Text style={styles.title}>{currentUser.email}</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.box} onPress={() => {}}>
           <Text style={styles.subtitle}>Telefone</Text>

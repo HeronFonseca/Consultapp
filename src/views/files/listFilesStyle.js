@@ -5,13 +5,20 @@ const screenHeight = Dimensions.get('screen').height;
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
     flex: 1,
-    alignItems: 'center',
+    backgroundColor: '#fff',
+    padding: 10,
+  },
+  titleText: {
+    fontFamily: 'Roboto-Bold',
+    fontSize: 25,
+    textAlign: 'center',
+    padding: 20,
+    color: '#00171F',
   },
   item: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     backgroundColor: '#BEEAE1',
     borderRadius: 5,
     shadowRadius: 3.84,
@@ -26,36 +33,14 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 8,
   },
-  doctorName: {
-    fontSize: 28,
+  itemText: {
     fontFamily: 'Roboto-Bold',
+    fontSize: 20,
     color: '#00171F',
   },
-  informationWraper: {
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  dateWrapper: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  specialty: {
-    fontSize: 18,
-    fontFamily: 'Roboto-Medium',
-    color: '#00171F',
-  },
-  consultationHour: {
-    fontSize: 15,
-    fontFamily: 'Roboto-Bold',
-    color: '#00171F',
-    width: screenWidth * 0.41,
-    flexWrap: 'wrap',
-    textAlign: 'center',
-  },
-  weekDay: {
-    fontSize: 15,
-    fontFamily: 'Roboto-Medium',
+  itemName: {
+    fontFamily: 'Roboto-Regular',
+    fontSize: 20,
     color: '#00171F',
   },
 });

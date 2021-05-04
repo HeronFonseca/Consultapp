@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   View,
@@ -9,69 +9,68 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './doctorsListStyle';
+import firestore from '@react-native-firebase/firestore';
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    specialty: 'Cardiologista',
-    doctorName: 'Dr Drauzio Varella',
-    doctorImage: '',
-    consultationHour: ['14:00-15:00', '18:00-19:00', '20:00-21:00'],
-  },
-  {
-    id: 'bd7aceea-c1b1-46c2-aed5-3ad53abb28ba',
-    specialty: 'Cardiologista',
-    doctorName: 'Dr Drauzio Varella',
-    doctorImage: '',
-    consultationHour: ['14:00-15:00', '18:00-19:00', '20:00-21:00'],
-  },
-  {
-    id: 'bd7acfea-c1b1-46c2-aed5-3ad53abb28ba',
-    specialty: 'Cardiologista',
-    doctorName: 'Dr Drauzio Varella',
-    doctorImage: '',
-    consultationHour: ['14:00-15:00', '18:00-19:00', '20:00-21:00'],
-  },
-];
-
-const renderConsultationHour = consultationHour => {
-  consultationHour.map((item, index) => {
-    <Text key={index}>{item}</Text>;
-    console.log('ITEM', item);
-  });
-};
-
-const Item = ({
-  specialty,
-  doctorName,
-  consultationHour,
-  weekDay,
-  navigation,
-}) => (
+const Item = ({specialty, name, consultationHour, crm, navigation}) => (
   <TouchableOpacity
     style={styles.item}
     onPress={() => {
-      navigation.navigate('DoctorDescription', {doctorName: doctorName});
+      navigation.navigate('DoctorDescription', {
+        name: name,
+        specialty: specialty,
+        crm: crm,
+        consultationHour: consultationHour,
+      });
     }}>
     <View style={styles.informationWrapper}>
-      <Text style={styles.doctorName}>{doctorName}</Text>
+      <Text style={styles.doctorName}>{name}</Text>
       <Text style={styles.specialty}>{specialty}</Text>
     </View>
     <View style={styles.dateWrapper}>
       <Icon name="calendar" size={25} color="#00171F" />
-      {renderConsultationHour(consultationHour)}
-      <Text style={styles.weekDay}>{weekDay}</Text>
+      <Text style={styles.consultationHour}>{consultationHour}</Text>
     </View>
   </TouchableOpacity>
 );
 
-const Schedule = ({navigation}) => {
+const DoctorsList = ({navigation, route}) => {
+  const [docList, setDocList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const {id, docSpecialty} = route.params;
+
+  const ref = firestore()
+    .collection('categories')
+    .doc(`${id}`)
+    .collection('doc' + `${docSpecialty}`);
+
+  useEffect(() => {
+    return ref.onSnapshot(querySnapshot => {
+      const list = [];
+      querySnapshot.forEach(doc => {
+        const {name, specialty, consultationHour, crm} = doc.data();
+        list.push({
+          id: doc.id,
+          name,
+          specialty,
+          consultationHour,
+          crm,
+        });
+        console.log(list);
+
+        setDocList(list);
+        if (loading) {
+          setLoading(false);
+        }
+      });
+    });
+  }, []);
   const renderItem = ({item}) => (
     <Item
       specialty={item.specialty}
-      doctorName={item.doctorName}
+      name={item.name}
       consultationHour={item.consultationHour}
-      weekDay={item.weekDay}
+      crm={item.crm}
       navigation={navigation}
     />
   );
@@ -79,7 +78,7 @@ const Schedule = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={DATA}
+        data={docList}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
@@ -87,4 +86,4 @@ const Schedule = ({navigation}) => {
   );
 };
 
-export default Schedule;
+export default DoctorsList;

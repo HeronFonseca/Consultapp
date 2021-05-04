@@ -1,5 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Text, View, Image, Button} from 'react-native';
+import {Text, View, Image, Alert} from 'react-native';
 import styles from './doctorDescriptionStyle';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import SmallBtn from '../../components/smallButton/smallButton';
@@ -7,15 +7,24 @@ import Btn from '../../components/button/button';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import {format} from 'date-fns';
 import Modal from 'react-native-modal';
+import {useAuth} from '../../context/authContext';
+import firestore from '@react-native-firebase/firestore';
+import {firebase} from '@react-native-firebase/auth';
 
 const DoctorDescription = ({navigation, route}) => {
-  const {doctorName} = route.params;
+  const {name, specialty, consultationHour, crm} = route.params;
+  const {currentUser} = useAuth();
+
+  console.log('currentuser uid', currentUser.uid);
+
+  const ref = firestore().collection('appointments');
 
   const [date, setDate] = useState(new Date());
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
   const [dateFormated, setDateFormated] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
+  const [flag, setFlag] = useState(false);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -42,6 +51,73 @@ const DoctorDescription = ({navigation, route}) => {
     showMode('time');
   };
 
+  const checkData = async () => {
+    await ref.get().then(snapshot => {
+      snapshot.forEach(doc => {
+        const dateFirestore = doc.data().date;
+        const dateFirestoreJson = JSON.stringify(dateFirestore);
+        console.log('JSON 1', dateFirestoreJson);
+
+        // Calculo para igualar ao timestamp do firestore
+        const resultDate = new firebase.firestore.Timestamp.fromDate(date);
+        const resultDateJson = JSON.stringify(resultDate);
+        console.log('JSON 2', resultDateJson);
+
+        if (
+          dateFirestoreJson === resultDateJson &&
+          doc.data().doctor === name
+        ) {
+          // evitar dados duplicados no firestore
+          console.log('ENTROUUU CERTO');
+          setFlag(true);
+        }
+      });
+    });
+    addAppointment(flag);
+  };
+
+  const addAppointment = async teste => {
+    console.log('FLAG', teste);
+    if (teste === true) {
+      console.log('CONSULTA JA EXISTE');
+
+      // Alert message
+      Alert.alert(
+        'Já existe consulta nesse horário',
+        'Procure um outro horário para consulta',
+        [
+          {
+            text: 'OK',
+            onPress: () => {
+              setFlag(false);
+              console.log('OK Pressed');
+            },
+          },
+        ],
+      );
+    } else {
+      await ref.add({
+        doctor: name,
+        specialty: specialty,
+        uid: currentUser.uid,
+        date: date,
+      });
+      // Alert message
+      Alert.alert(
+        'Consulta agendada',
+        'A consulta agora consta na sua agenda',
+        [
+          {
+            text: 'OK',
+            onPress: () => {
+              console.log('OK Pressed');
+            },
+          },
+        ],
+      );
+    }
+  };
+
   useEffect(() => {
     onChange();
   }, [dateFormated]);
@@ -55,11 +131,13 @@ const DoctorDescription = ({navigation, route}) => {
             resizeMode={'contain'}
             source={require('../../../assets/images/consultapppreto.png')}
           />
-          <Text style={styles.doctorName}>{doctorName}</Text>
-          <Text style={styles.crm}>CRM: 00000000-0/BR</Text>
+          <Text style={styles.doctorName}>{name}</Text>
+          <Text style={styles.crm}>CRM: {crm}</Text>
         </View>
         <View style={styles.hourWrapper}>
-          <Text style={styles.consultationHour}>Horário de atendimento:</Text>
+          <Text style={styles.consultationHour}>
+            Horário de atendimento: {consultationHour}
+          </Text>
 
           <SmallBtn onPress={showDatepicker} title="Escolher Dia" />
 
@@ -96,7 +174,11 @@ const DoctorDescription = ({navigation, route}) => {
                 <SmallBtn
                   title="Confirmar Agendamento"
                   type={'blue'}
-                  onPress={toggleModal}
+                  onPress={() => {
+                    toggleModal();
+                    // addAppointment();
+                    checkData();
+                  }}
                 />
               </View>
             </View>

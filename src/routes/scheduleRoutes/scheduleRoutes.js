@@ -13,13 +13,14 @@ const ScheduleRoutes = () => {
   return (
     <ScheduleStack.Navigator
       screenOptions={{
+        headerTitleStyle: {alignSelf: 'center'},
         headerStyle: {backgroundColor: '#53C8B0'},
         headerTintColor: '#00171F',
       }}>
       <ScheduleStack.Screen
         name="Schedule"
         component={Schedule}
-        options={{headerShown: false}}
+        options={{title: 'Agenda'}}
       />
       <ScheduleStack.Screen
         name="AppointmentData"

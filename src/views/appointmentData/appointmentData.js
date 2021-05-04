@@ -7,14 +7,9 @@ import Modal from 'react-native-modal';
 import DocumentPicker from 'react-native-document-picker';
 
 const AppointmentData = ({navigation, route}) => {
-  const {specialty, doctorName, date, weekDay} = route.params;
+  const {specialty, doctor, formatedDate} = route.params;
 
-  const [isModalVisible, setModalVisible] = useState(false);
   const [file, setFile] = useState(null);
-
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
 
   const selectFile = async () => {
     try {
@@ -52,12 +47,11 @@ const AppointmentData = ({navigation, route}) => {
             resizeMode={'contain'}
             source={require('../../../assets/images/consultapppreto.png')}
           />
-          <Text style={styles.doctorName}>{doctorName}</Text>
+          <Text style={styles.doctorName}>{doctor}</Text>
         </View>
         <View style={styles.dateWrapper}>
           <Icon name="calendar" size={50} color="#00171F" />
-          <Text style={styles.date}>{date}</Text>
-          <Text style={styles.weekDay}>{weekDay}</Text>
+          <Text style={styles.date}>{formatedDate}</Text>
         </View>
         <View style={styles.btnWrapper}>
           <Btn

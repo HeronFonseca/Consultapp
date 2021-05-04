@@ -12,13 +12,16 @@ const AuthProvider = ({children}) => {
   const [initializing, setInitializing] = useState(true);
   const [loading, setLoading] = useState(true);
 
-  const SingUp = (email, password) => {
-    console.log('AQUIII 11', email, password);
+  const SingUp = (email, password, displayName) => {
+    console.log('AQUIII 11', email, password, displayName);
     // Logando no firebase com uma nova conta
     auth()
       .createUserWithEmailAndPassword(email, password)
       .then(async response => {
-        console.log('User account created & signed in!', response);
+        const user = auth().currentUser;
+        return response.user.updateProfile({
+          displayName: displayName,
+        });
       })
       .catch(error => {
         if (error.code === 'auth/email-already-in-use') {

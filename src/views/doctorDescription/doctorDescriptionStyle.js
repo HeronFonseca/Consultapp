@@ -56,8 +56,9 @@ const styles = StyleSheet.create({
   },
   consultationHour: {
     fontFamily: 'Roboto-Medium',
-    fontSize: 20,
+    fontSize: 15,
     color: '#00171F',
+    marginBottom: 10,
   },
   hours: {
     fontFamily: 'Roboto-Medium',

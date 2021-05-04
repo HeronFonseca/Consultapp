@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   View,
@@ -6,46 +6,16 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './homeStyle';
+import firestore from '@react-native-firebase/firestore';
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    specialty: 'Cardiologista',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    specialty: 'Pediatra',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    specialty: 'Ortopedista',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd94-145571e29d72',
-    specialty: 'Ginecologia e Obstetrícia',
-  },
-  {
-    id: '58694a0f-3da1-491f-bd96-145571e29d72',
-    specialty: 'Clínica Geral',
-  },
-  {
-    id: '58694a0f-3da1-471d-bd96-145571e29d72',
-    specialty: 'Dermatologia',
-  },
-  {
-    id: '58694b0f-3da1-471d-bd96-145571e29d72',
-    specialty: 'Psiquiatria',
-  },
-];
-
-const Item = ({specialty, navigation}) => (
+const Item = ({specialty, id, navigation}) => (
   <TouchableOpacity
     style={styles.item}
     onPress={() => {
       navigation.navigate('DoctorsList', {
-        specialty: specialty,
+        id: id,
+        docSpecialty: specialty,
       });
     }}>
     <View style={styles.informationWrapper}>
@@ -55,14 +25,36 @@ const Item = ({specialty, navigation}) => (
 );
 
 const Home = ({navigation}) => {
-  const renderItem = ({item}) => (
-    <Item specialty={item.specialty} navigation={navigation} />
-  );
+  const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState([]);
 
+  const ref = firestore().collection('categories');
+
+  const renderItem = ({item}) => (
+    <Item specialty={item.title} id={item.id} navigation={navigation} />
+  );
+  useEffect(() => {
+    return ref.onSnapshot(querySnapshot => {
+      const list = [];
+      querySnapshot.forEach(doc => {
+        const {title} = doc.data();
+        list.push({
+          id: doc.id,
+          title,
+        });
+      });
+
+      setCategories(list);
+
+      if (loading) {
+        setLoading(false);
+      }
+    });
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={DATA}
+        data={categories}
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />

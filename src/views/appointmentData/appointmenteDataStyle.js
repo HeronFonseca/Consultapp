@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   },
   date: {
     fontFamily: 'Roboto-Medium',
-    fontSize: 35,
+    fontSize: 20,
     color: '#00171F',
   },
   weekDay: {

@@ -11,6 +11,7 @@ const HomeRoutes = () => {
   return (
     <ScheduleStack.Navigator
       screenOptions={{
+        headerTitleStyle: {alignSelf: 'center'},
         headerStyle: {backgroundColor: '#53C8B0'},
         headerTintColor: '#00171F',
       }}>

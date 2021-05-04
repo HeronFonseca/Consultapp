@@ -4,9 +4,9 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import ScheduleRoutes from '../scheduleRoutes/scheduleRoutes';
 import HomeRoutes from '../homeRoutes';
 import Profile from '../../views/profile/profile';
+import FilesRoutes from '../../routes/filesRoutes';
 
 import Files from '../../views/files/files';
-import Forms from '../../views/forms/forms';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -29,14 +29,10 @@ const AppRoutes = () => {
       />
       <Tab.Screen
         name="Arquivos"
-        component={Files}
+        component={FilesRoutes}
         options={{tabBarIcon: 'folder-open'}}
       />
-      <Tab.Screen
-        name="Formulários"
-        component={Forms}
-        options={{tabBarIcon: 'file-pdf'}}
-      />
+
       <Tab.Screen
         name="Perfil"
         component={Profile}

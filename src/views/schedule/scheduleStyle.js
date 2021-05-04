@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   item: {
     flexDirection: 'row',
@@ -45,13 +46,13 @@ const styles = StyleSheet.create({
     color: '#00171F',
   },
   date: {
-    fontSize: 25,
+    fontSize: 15,
     fontFamily: 'Roboto-Bold',
     color: '#00171F',
   },
-  weekDay: {
-    fontSize: 15,
-    fontFamily: 'Roboto-Medium',
+  informative: {
+    fontFamily: 'Roboto-Bold',
+    fontSize: 50,
     color: '#00171F',
   },
 });
