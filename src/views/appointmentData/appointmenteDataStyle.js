@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
   appointmentCard: {
     flexDirection: 'column',
     justifyContent: 'space-between',
-    //alignItems: 'center',
     backgroundColor: '#BEEAE1',
     borderRadius: 5,
     shadowRadius: 3.84,
@@ -59,11 +58,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#00171F',
   },
-  weekDay: {
-    fontFamily: 'Roboto-Medium',
-    fontSize: 20,
-    color: '#00171F',
-  },
   btnWrapper: {
     height: screenHeight * 0.2,
     alignItems: 'center',
@@ -72,8 +66,32 @@ const styles = StyleSheet.create({
   specialtyWrapper: {
     alignItems: 'center',
   },
-  modalWrapper: {
+  idTextWrapper: {
+    justifyContent: 'space-around',
     alignItems: 'center',
+    color: '#00171F',
+    marginTop: 15,
+    //backgroundColor: 'red',
+    height: screenHeight * 0.15,
+  },
+  idTitle: {
+    fontFamily: 'Roboto-Bold',
+    fontSize: 20,
+    color: '#00171F',
+  },
+  idSubtitle: {
+    fontFamily: 'Roboto-Regular',
+    fontSize: 13,
+    color: '#00171F',
+    marginTop: -15,
+  },
+  idText: {
+    fontFamily: 'Roboto-Bold',
+    fontSize: 15,
+    textAlign: 'center',
+    color: '#00171F',
+    width: screenWidth * 0.3,
+    backgroundColor: '#D3F1EB',
   },
 });
 

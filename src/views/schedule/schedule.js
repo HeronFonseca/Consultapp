@@ -14,7 +14,7 @@ import firestore from '@react-native-firebase/firestore';
 import {firebase} from '@react-native-firebase/auth';
 import {format} from 'date-fns';
 
-const Item = ({specialty, doctor, formatedDate, navigation}) => (
+const Item = ({specialty, doctor, formatedDate, scheduleId, navigation}) => (
   <TouchableOpacity
     style={styles.item}
     onPress={() => {
@@ -22,6 +22,7 @@ const Item = ({specialty, doctor, formatedDate, navigation}) => (
         specialty: specialty,
         doctor: doctor,
         formatedDate: formatedDate,
+        scheduleId: scheduleId,
       });
     }}>
     <View style={styles.informationWrapper}>
@@ -41,7 +42,6 @@ const Schedule = ({navigation}) => {
   const [schedule, setSchedule] = useState(true);
 
   const {currentUser} = useAuth();
-  console.log('CURRENT USER', currentUser);
   const ref = firestore().collection('appointments');
 
   const renderItem = ({item}) => (
@@ -50,6 +50,7 @@ const Schedule = ({navigation}) => {
       doctor={item.doctor}
       formatedDate={item.formatedDate}
       navigation={navigation}
+      scheduleId={item.id}
     />
   );
 

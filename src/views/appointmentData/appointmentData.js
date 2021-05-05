@@ -3,36 +3,11 @@ import {Text, View, Image, Alert} from 'react-native';
 import styles from './appointmenteDataStyle';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Btn from '../../components/button/button';
-import Modal from 'react-native-modal';
-import DocumentPicker from 'react-native-document-picker';
 
 const AppointmentData = ({navigation, route}) => {
-  const {specialty, doctor, formatedDate} = route.params;
+  const {specialty, doctor, formatedDate, scheduleId} = route.params;
 
-  const [file, setFile] = useState(null);
-
-  const selectFile = async () => {
-    try {
-      const res = await DocumentPicker.pick({
-        type: [DocumentPicker.types.allFiles],
-      });
-      console.log('RES', res);
-      setFile(res);
-      console.log('FILE', file);
-      Alert.alert('Sucesso!', 'O arquivo selecionado foi enviado', [
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
-      ]);
-    } catch (err) {
-      if (DocumentPicker.isCancel(err)) {
-        // User cancelled the picker, exit any dialogs or menus and move on
-        Alert.alert('Cancelado!', 'O arquivo selecionado não foi enviado', [
-          {text: 'OK', onPress: () => console.log('OK Pressed')},
-        ]);
-      } else {
-        throw err;
-      }
-    }
-  };
+  console.log('IDDDD', scheduleId);
 
   return (
     <View style={styles.container}>
@@ -53,14 +28,14 @@ const AppointmentData = ({navigation, route}) => {
           <Icon name="calendar" size={50} color="#00171F" />
           <Text style={styles.date}>{formatedDate}</Text>
         </View>
+        <View style={styles.idTextWrapper}>
+          <Text style={styles.idTitle}>ID da Chamada</Text>
+          <Text style={styles.idSubtitle}>
+            Utilize o ID abaixo para entrar na consulta com seu médico:
+          </Text>
+          <Text style={styles.idText}>{scheduleId.substring(0, 9)}</Text>
+        </View>
         <View style={styles.btnWrapper}>
-          <Btn
-            title={'Anexar Anamnese'}
-            type={'blue'}
-            onPress={() => {
-              selectFile();
-            }}
-          />
           <Btn
             title={'Entrar na consulta'}
             onPress={() => {
