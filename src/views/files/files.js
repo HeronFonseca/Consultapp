@@ -1,10 +1,8 @@
 // Import React in our code
 import React, {useState} from 'react';
 
-// Import all the components we are going to use
 import {
   SafeAreaView,
-  StyleSheet,
   Text,
   View,
   ActivityIndicator,
@@ -13,9 +11,7 @@ import {
 
 import styles from './filesStyle';
 
-// Firebase Storage to upload file
 import storage from '@react-native-firebase/storage';
-// To pick the file from local file system
 import DocumentPicker from 'react-native-document-picker';
 import RNFetchBlob from 'rn-fetch-blob';
 import {useAuth} from '../../context/authContext';
@@ -23,7 +19,6 @@ import {useAuth} from '../../context/authContext';
 const UploadFileScreen = ({navigation}) => {
   const {currentUser} = useAuth();
 
-  // State Defination
   const [loading, setLoading] = useState(false);
   const [filePath, setFilePath] = useState({});
   const [process, setProcess] = useState('');

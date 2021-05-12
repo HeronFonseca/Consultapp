@@ -1,10 +1,6 @@
-// Import React in our code
 import React, {useState, useEffect} from 'react';
-
-// Import all the components we are going to use
 import {
   SafeAreaView,
-  StyleSheet,
   Text,
   View,
   ActivityIndicator,
@@ -20,7 +16,6 @@ import styles from './listFilesStyle';
 const FilesListingScreen = () => {
   const {currentUser} = useAuth();
 
-  // State Defination
   const [listData, setListData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -47,7 +42,6 @@ const FilesListingScreen = () => {
   const ItemView = ({item}) => {
     console.log('ITEEEM', item);
     return (
-      // FlatList Item
       <View style={{padding: 10}}>
         <TouchableOpacity
           style={styles.item}
@@ -61,7 +55,6 @@ const FilesListingScreen = () => {
 
   const ItemSeparatorView = () => {
     return (
-      // FlatList Item Separator
       <View
         style={{
           height: 0.5,
