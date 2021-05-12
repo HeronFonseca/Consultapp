@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
   errorMessageLabel: {
-    color: '#F8BE0E',
+    color: 'red',
     paddingBottom: 4,
   },
 });
