@@ -4,7 +4,7 @@ O objetivo deste aplicativo é permitir que o usuário tenha acesso à médicos 
 
 # Sobre o projeto
 
-O Projeto foi iniciado através do **react-native init** e configurado para utilizar **ESLint**, **Prettier** e **Editor Config**
+O Projeto foi iniciado através do **react-native init** e configurado para utilizar **Prettier** e **Editor Config**
 
 Para clonar o projeto é necessário que você tenha o **GIT** instalado em sua maquina e o gerenciador de pacotes **Yarn**
 
