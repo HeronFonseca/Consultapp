@@ -56,7 +56,7 @@ const SingUpView = ({navigation}) => {
             <Text style={styles.emailText}>Informe seu Nome:</Text>
             <Input
               name={'singUpName'}
-              placeholder={'name'}
+              placeholder={'Nome'}
               placeholderTextColor={'#00171F'}
               onFocus={() => setKeyboarAvoidView(false)}
             />
